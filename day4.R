@@ -80,14 +80,14 @@ has_val_pid <- function(x) {
     return (grepl("^[0-9]{9}$", pid))
 }
 
-
-pp_w_req_fields <- cleaned_input[processed_results]
-pp_w_req_fields <- strsplit(pp_w_req_fields, split = " ", fixed = TRUE)
-
 # Number of valid passports ----
-processed_passport <- sapply(pp_w_req_fields, function(x) {
+pp_w_req_fields <- cleaned_input[processed_results]
+
+processed_passport <- sapply(pp_w_req_fields, function(passport_list) {
+    each_passport <- strsplit(passport_list, split = " ", fixed = TRUE)[[1]]
+    
     results <- vector()
-    for (each_field in x) {
+    for (each_field in each_passport) {
         processed_passport <- switch(EXPR = substr(each_field, 1, 3), 
                "byr" = is_between_years(each_field, "byr", 1920, 2002),
                "iyr" = is_between_years(each_field, "iyr", 2010, 2020),
