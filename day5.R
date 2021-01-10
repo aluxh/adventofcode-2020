@@ -2,7 +2,7 @@
 # Day 5: Binary Boarding
 # PART 1 ----
 
-input <- readLines("day5.txt")
+input <- readLines("input/day5.txt")
 
 find_pos <- function(range = c(0, 127), alpha) {
     # Recursion function to find the exact position of the row or column ----

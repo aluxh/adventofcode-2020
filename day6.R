@@ -1,7 +1,7 @@
 # Advent Of Code 2020 - Day 6 ----
 # Day 6: Custom Customs
 # PART 1 ----
-input <- readLines("day6.txt")
+input <- readLines("input/day6.txt")
 
 # Cleaning up the text
 joined_input <- paste(input, collapse = "\n")
@@ -44,15 +44,22 @@ find_intersect <- function(tmp_list = vector(), qsn_list) {
     }
 }
 
+# Number of qsn answered
 results <- lapply(list_of_qsn, function(x) {
     return (find_intersect(qsn_list = x))
 })
-# x <- lengths(results)
 sum(lengths(results))
 
+## Another solution ----
+## Using an answer from https://github.com/rundel where he
+## used `table` to aggregate the count overlapped questions
+## Then, identify which count = number of people
+sum(unlist(lapply(list_of_qsn, function(qsn) {
+    x <- strsplit(qsn, split = "")
+    sum(table(unlist(x)) == length(x))
+})))
 
-
-
+# First version of find intersect without recursion ----
 find_intersect_v1 <- function(qsn_list) {
     x <- strsplit(qsn_list, split = "")
     

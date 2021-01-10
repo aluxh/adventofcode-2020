@@ -3,7 +3,7 @@
 # PART 1
 
 # raw input ----
-input <- readLines("day4.txt")
+input <- readLines("input/day4.txt")
 
 # clean input ----
 joined_input <- paste(input, collapse = "\n")
